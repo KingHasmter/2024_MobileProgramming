@@ -33,6 +33,7 @@ public class StoreHall extends AppCompatActivity {
     Boolean waterOn, milkOn, coffeeOn, iceOn;
     //firstIntent는 kitchen에서 데이터 받아오는 인텐트, secondIntent는 kitchen으로 데이터 보내고 화면 전환하는 인텐트
     Intent firstIntent, secondIntent;
+    int score_percentage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +54,55 @@ public class StoreHall extends AppCompatActivity {
             if(past_order==0) clientOrder.setText(R.string.order0);
             else if(past_order==1) clientOrder.setText(R.string.order1);
             showClient(past_order, 0, getIntent, clientImg, clientOrder, moveKitchen);
+
+            waterOn = firstIntent.getBooleanExtra("is_waterOn", false);
+            milkOn = firstIntent.getBooleanExtra("is_milkOn", false);
+            coffeeOn = firstIntent.getBooleanExtra("is_coffeeOn", false);
+            iceOn = firstIntent.getBooleanExtra("is_iceOn", false);
+
+            boolean answer_ice = true;
+            boolean answer_water = true;
+            boolean answer_coffee = true;
+            boolean answer_milk = true;
+
+            // 주문 확인하는 코드.
+            if(past_order == 0 ){
+                answer_ice = true;
+                answer_water = true;
+                answer_coffee = true;
+                answer_milk = false;
+            }
+            else if(past_order == 1 ){
+                answer_ice = false;
+                answer_water = true;
+                answer_coffee = true;
+                answer_milk = false;
+            }
+            else if (past_order == 2) {
+                answer_ice = true;
+                answer_water = false;
+                answer_coffee = true;
+                answer_milk = true;
+            }
+            else if (past_order == 3) {
+                answer_ice = false;
+                answer_water = false;
+                answer_coffee = true;
+                answer_milk = true;
+            }
+
+            // 비교하는 코드.
+            score_percentage = 100;
+            if (answer_ice != iceOn) score_percentage -= 25;
+            if (answer_water != waterOn) score_percentage -= 25;
+            if (answer_coffee != coffeeOn) score_percentage -= 25;
+            if (answer_milk != milkOn) score_percentage -= 25;
+
+            if(score_percentage==100) clientOrder.setText("Perfect!");
+            else if(score_percentage==75) clientOrder.setText("Good, have a good one.");
+            else if(score_percentage==50) clientOrder.setText("Thanks.");
+            else if(score_percentage==25) clientOrder.setText("It goes something wrong...");
+            else clientOrder.setText("What the hell is it?!");
         }
 
         if(getIntent!=1) {
@@ -77,10 +127,7 @@ public class StoreHall extends AppCompatActivity {
             }
         });
 
-        waterOn = firstIntent.getBooleanExtra("is_waterOn", false);
-        milkOn = firstIntent.getBooleanExtra("is_milkOn", false);
-        coffeeOn = firstIntent.getBooleanExtra("is_coffeeOn", false);
-        iceOn = firstIntent.getBooleanExtra("is_iceOn", false);
+
 
         System.out.println("testline");
 
