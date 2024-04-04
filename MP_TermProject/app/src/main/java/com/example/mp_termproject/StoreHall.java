@@ -35,11 +35,13 @@ public class StoreHall extends AppCompatActivity {
 
 
         Intent secondIntent = getIntent();
-        getIntent = secondIntent.getIntExtra("Intent_int", 0);
+        getIntent = secondIntent.getIntExtra("Intent_index", 0);
 
         if(getIntent!=1) {
             Random random = new Random();
             int time= random.nextInt(10000);
+            if(getIntent==1)
+                time=0;
             showClient(time, clientImg, clientOrder, moveKitchen);
         }
 
@@ -47,6 +49,7 @@ public class StoreHall extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent fisrtIntent = new Intent(getApplicationContext(), StoreKitchen.class);
+                fisrtIntent.putExtra("order_idx", order)
                 startActivity(fisrtIntent);
             }
         });
@@ -79,7 +82,6 @@ public class StoreHall extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-
                 moveKitchen.setVisibility(View.VISIBLE);
             }
         }, time+1000);

@@ -77,7 +77,7 @@ public class StoreKitchen extends AppCompatActivity {
                 intent.putExtra("is_coffeeOn", coffeeOn);
                 intent.putExtra("is_iceOn", iceOn);
                 intent.putExtra("is_milkOn", milkOn);
-                intent.putExtra("intent_index", 1);
+                intent.putExtra("Intent_index", 1);
                 startActivity(intent);
                 finish();
             }
