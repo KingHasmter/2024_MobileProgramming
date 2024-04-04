@@ -14,13 +14,14 @@ import android.widget.TextView;
 import java.util.Random;
 
 public class StoreHall extends AppCompatActivity {
-
+    //손님 이미지
     ImageView clientImg;
+    //손님 주문 대사
     TextView clientOrder;
     //눌렀을 때 kitchen.class로 가는 버튼
     Button moveKitchen;
 
-    //Kitechen에서 Intent 받았는지 확인용 변수
+    //Kitchen에서 Intent 받았는지 확인용 변수
     int getIntent=0;
     //무작위로 생성되는 손님의 주문
     int order=-1;

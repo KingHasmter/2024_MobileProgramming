@@ -12,10 +12,11 @@ import android.widget.Button;
 import android.widget.ToggleButton;
 
 public class StoreKitchen extends AppCompatActivity {
-
+    //complete 버튼
     Button btnDone;
+    //재료 토글버튼
     ToggleButton water, milk, ice, coffee;
-    String beverage="";
+    //firstIntent는 받아오는 인텐트, secondIntent는 보내는 인텐트
     Intent firstIntent, secondIntent;
     int order;
 
