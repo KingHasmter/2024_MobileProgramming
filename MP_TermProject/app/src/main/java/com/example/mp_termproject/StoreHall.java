@@ -19,6 +19,9 @@ public class StoreHall extends AppCompatActivity {
     TextView clientOrder;
     Button moveKitchen;
 
+    //Intent 받았는지 확인용 변수
+    int getIntent=0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,11 +33,16 @@ public class StoreHall extends AppCompatActivity {
         moveKitchen=(Button)findViewById(R.id.Make);
 
         Intent secondIntent = getIntent();
-        String result = secondIntent.getStringExtra("Bevarage");
+        final String result = secondIntent.getStringExtra("Bevarage");
 
-        Random random = new Random();
-        int time= random.nextInt(10000);
-        showClient(time, clientImg, clientOrder, moveKitchen);
+        if (result!=null)
+            getIntent=1;
+
+        if(getIntent!=1) {
+            Random random = new Random();
+            int time= random.nextInt(10000);
+            showClient(time, clientImg, clientOrder, moveKitchen);
+        }
 
         moveKitchen.setOnClickListener(new View.OnClickListener() {
             @Override

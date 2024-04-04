@@ -13,7 +13,6 @@ import android.widget.ToggleButton;
 
 public class StoreKitchen extends AppCompatActivity {
 
-    //Button water, milk, ice, coffee;
     Button btnDone;
     ToggleButton water, milk, ice, coffee;
     String beverage="";
@@ -27,52 +26,6 @@ public class StoreKitchen extends AppCompatActivity {
 
         Context context=getApplicationContext();
 
-        /*water=(Button)findViewById(R.id.ingredient_water);
-        milk=(Button)findViewById(R.id.ingredient_milk);
-        ice=(Button)findViewById(R.id.ingredient_ice);
-        coffee=(Button)findViewById(R.id.ingredient_coffee);*/
-        /*boolean water_checked=false, milk_checked=false, ice_checked=false, coffee_checked=false;
-
-        water.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                water.setBackgroundColor(ContextCompat.getColor(context, R.color.gray));
-                if(water_checked)
-                    water_checked=false;
-                else
-                    water_checked=true;
-            }
-        });
-        milk.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                milk.setBackgroundColor(ContextCompat.getColor(context, R.color.gray));
-                if(!milk_checked)
-                    milk_checked=1;
-                else
-                    milk_checked=0;
-            }
-        });
-        ice.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ice.setBackgroundColor(ContextCompat.getColor(context, R.color.gray));
-                if(!ice_checked)
-                    ice_checked=1;
-                else
-                    ice_checked=0;
-            }
-        });
-        coffee.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                coffee.setBackgroundColor(ContextCompat.getColor(context, R.color.gray));
-                if(!coffee_checked)
-                    coffee_checked=1;
-                else
-                    coffee_checked=0;
-            }
-        });*/
 
         btnDone=(Button)findViewById(R.id.done_button);
         water=(ToggleButton)findViewById(R.id.water_toggle);
@@ -80,6 +33,7 @@ public class StoreKitchen extends AppCompatActivity {
         ice=(ToggleButton)findViewById(R.id.ice_toggle);
         coffee=(ToggleButton)findViewById(R.id.coffee_toggle);
 
+        // boolean data for check order completion with result
         boolean waterOn=water.isChecked(), milkOn= milk.isChecked(), iceOn=ice.isChecked(), coffeeOn=coffee.isChecked();
 
         if(coffeeOn){
@@ -112,8 +66,10 @@ public class StoreKitchen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, StoreHall.class);
-                intent.putExtra("Beverage", beverage);
-
+                intent.putExtra("is_waterOn", waterOn);
+                intent.putExtra("is_coffeeOn", coffeeOn);
+                intent.putExtra("is_iceOn", iceOn);
+                intent.putExtra("is_milkOn", milkOn);
                 startActivity(intent);
                 finish();
             }

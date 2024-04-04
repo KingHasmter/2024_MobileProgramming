@@ -1,7 +1,9 @@
 <resources>
     <string name="app_name">MP_TermProject</string>
-    <string name="order0">아이스 아메리카노 주세요.</string>
+    <string name="order0">아이스 아메리카노 한 잔이요.</string>
     <string name="order1">뜨거운 아메리카노요.</string>
+    <string name="order2">시원한 라떼 하나 주세요.</string>
+    <string name="order3">라떼 한 잔 뜨겁게 해주세요.</string>
     <string name="orderMessage">client order message</string>
     <string name="goToMake">Make!</string>
     <string name="ice">Ice</string>
