@@ -21,6 +21,7 @@ public class StoreHall extends AppCompatActivity {
 
     //Kitechen에서 Intent 받았는지 확인용 변수
     int getIntent=0;
+    Boolean waterOn, milkOn, coffeeOn, iceOn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,11 +33,9 @@ public class StoreHall extends AppCompatActivity {
         clientOrder=(TextView)findViewById(R.id.Order);
         moveKitchen=(Button)findViewById(R.id.Make);
 
+
         Intent secondIntent = getIntent();
-        final Boolean waterOn = secondIntent.getBooleanExtra("is_waterOn", false);
-        final Boolean milkOn = secondIntent.getBooleanExtra("is_milkOn", false);
-        final Boolean coffeeOn = secondIntent.getBooleanExtra("is_coffeeOn", false);
-        final Boolean iceOn = secondIntent.getBooleanExtra("is_iceOn", false);
+        getIntent = secondIntent.getIntExtra("Intent_int", 0);
 
         if(getIntent!=1) {
             Random random = new Random();
@@ -51,6 +50,13 @@ public class StoreHall extends AppCompatActivity {
                 startActivity(fisrtIntent);
             }
         });
+
+        waterOn = secondIntent.getBooleanExtra("is_waterOn", false);
+        milkOn = secondIntent.getBooleanExtra("is_milkOn", false);
+        coffeeOn = secondIntent.getBooleanExtra("is_coffeeOn", false);
+        iceOn = secondIntent.getBooleanExtra("is_iceOn", false);
+
+        System.out.println("testline");
 
     }
 
