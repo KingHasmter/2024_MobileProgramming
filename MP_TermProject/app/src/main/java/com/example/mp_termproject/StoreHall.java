@@ -17,11 +17,21 @@ public class StoreHall extends AppCompatActivity {
 
     ImageView clientImg;
     TextView clientOrder;
+    //눌렀을 때 kitchen.class로 가는 버튼
     Button moveKitchen;
 
     //Kitechen에서 Intent 받았는지 확인용 변수
     int getIntent=0;
+    //무작위로 생성되는 손님의 주문
+    int order=-1;
+    //무작위로 생성되는 손님의 방문까지 걸리는 시간
+    int time;
+    //손님이 주문했던 내용
+    int past_order;
+    //제조음료의 재료 포함 여부
     Boolean waterOn, milkOn, coffeeOn, iceOn;
+    //firstIntent는 kitchen에서 데이터 받아오는 인텐트, secondIntent는 kitchen으로 데이터 보내고 화면 전환하는 인텐트
+    Intent firstIntent, secondIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,45 +44,52 @@ public class StoreHall extends AppCompatActivity {
         moveKitchen=(Button)findViewById(R.id.Make);
 
 
-        Intent secondIntent = getIntent();
-        getIntent = secondIntent.getIntExtra("Intent_index", 0);
+        Intent firstIntent = getIntent();
+        getIntent = firstIntent.getIntExtra("intent_index", 0);
+        past_order = firstIntent.getIntExtra("order_index", -1);
+
+        if(getIntent==1) {
+            if(past_order==0) clientOrder.setText(R.string.order0);
+            else if(past_order==1) clientOrder.setText(R.string.order1);
+            showClient(past_order, 0, getIntent, clientImg, clientOrder, moveKitchen);
+        }
 
         if(getIntent!=1) {
             Random random = new Random();
-            int time= random.nextInt(10000);
+            time = random.nextInt(10000);
             if(getIntent==1)
                 time=0;
-            showClient(time, clientImg, clientOrder, moveKitchen);
+
+            order = random.nextInt(2);
+            if(order==0) clientOrder.setText(R.string.order0);
+            else if (order == 1) clientOrder.setText(R.string.order1);
+
+            showClient(order, time, getIntent, clientImg, clientOrder, moveKitchen);
         }
 
         moveKitchen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent fisrtIntent = new Intent(getApplicationContext(), StoreKitchen.class);
-                fisrtIntent.putExtra("order_idx", order)
-                startActivity(fisrtIntent);
+                Intent secondIntent = new Intent(getApplicationContext(), StoreKitchen.class);
+                secondIntent.putExtra("order_idx", order);
+                startActivity(secondIntent);
             }
         });
 
-        waterOn = secondIntent.getBooleanExtra("is_waterOn", false);
-        milkOn = secondIntent.getBooleanExtra("is_milkOn", false);
-        coffeeOn = secondIntent.getBooleanExtra("is_coffeeOn", false);
-        iceOn = secondIntent.getBooleanExtra("is_iceOn", false);
+        waterOn = firstIntent.getBooleanExtra("is_waterOn", false);
+        milkOn = firstIntent.getBooleanExtra("is_milkOn", false);
+        coffeeOn = firstIntent.getBooleanExtra("is_coffeeOn", false);
+        iceOn = firstIntent.getBooleanExtra("is_iceOn", false);
 
         System.out.println("testline");
 
     }
 
-    private void showClient(Integer time, ImageView clientImg, TextView clientOrder, Button moveKitchen) {
+    private void showClient(Integer order, Integer time, Integer getIntent, ImageView clientImg, TextView clientOrder, Button moveKitchen) {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-
                 Random random=new Random();
-
-                int order = random.nextInt(2);
-                if(order==0) clientOrder.setText(R.string.order0);
-                else if (order == 1) clientOrder.setText(R.string.order1);
 
                 clientImg.setVisibility(View.VISIBLE);
                 clientOrder.setVisibility(View.VISIBLE);
@@ -82,7 +99,7 @@ public class StoreHall extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                moveKitchen.setVisibility(View.VISIBLE);
+                if(getIntent!=1) moveKitchen.setVisibility(View.VISIBLE);
             }
         }, time+1000);
 
