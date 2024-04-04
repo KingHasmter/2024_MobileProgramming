@@ -19,7 +19,7 @@ public class StoreHall extends AppCompatActivity {
     TextView clientOrder;
     Button moveKitchen;
 
-    //Intent 받았는지 확인용 변수
+    //Kitechen에서 Intent 받았는지 확인용 변수
     int getIntent=0;
 
     @Override
@@ -33,10 +33,10 @@ public class StoreHall extends AppCompatActivity {
         moveKitchen=(Button)findViewById(R.id.Make);
 
         Intent secondIntent = getIntent();
-        final String result = secondIntent.getStringExtra("Bevarage");
-
-        if (result!=null)
-            getIntent=1;
+        final Boolean waterOn = secondIntent.getBooleanExtra("is_waterOn", false);
+        final Boolean milkOn = secondIntent.getBooleanExtra("is_milkOn", false);
+        final Boolean coffeeOn = secondIntent.getBooleanExtra("is_coffeeOn", false);
+        final Boolean iceOn = secondIntent.getBooleanExtra("is_iceOn", false);
 
         if(getIntent!=1) {
             Random random = new Random();
