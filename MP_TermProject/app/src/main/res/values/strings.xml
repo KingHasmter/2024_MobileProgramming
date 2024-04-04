@@ -6,6 +6,7 @@
     <string name="order3">라떼 한 잔 뜨겁게 해주세요.</string>
     <string name="orderMessage">client order message</string>
     <string name="goToMake">Make!</string>
+    <string name="getNewClinet">Get New Client</string>
     <string name="ice">Ice</string>
     <string name="water">Water</string>
     <string name="coffee">Coffee</string>

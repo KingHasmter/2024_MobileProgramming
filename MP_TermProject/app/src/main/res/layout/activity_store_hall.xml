@@ -42,7 +42,18 @@
             android:textColor="@color/black"
             android:textSize="30dp"
             android:textStyle="bold"
-            android:visibility="invisible">
+            android:visibility="gone">
+        </Button>
+        <Button
+            android:id="@+id/getNewCliet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:text="@string/getNewClinet"
+            android:textColor="@color/black"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:visibility="gone">
         </Button>
     </LinearLayout>
 

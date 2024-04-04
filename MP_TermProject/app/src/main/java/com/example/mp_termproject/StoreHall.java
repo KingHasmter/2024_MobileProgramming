@@ -19,7 +19,7 @@ public class StoreHall extends AppCompatActivity {
     //손님 주문 대사
     TextView clientOrder;
     //눌렀을 때 kitchen.class로 가는 버튼
-    Button moveKitchen;
+    Button moveKitchen, reStart;
 
     //Kitchen에서 Intent 받았는지 확인용 변수
     int getIntent=0;
@@ -44,6 +44,7 @@ public class StoreHall extends AppCompatActivity {
         clientImg=(ImageView)findViewById(R.id.client);
         clientOrder=(TextView)findViewById(R.id.Order);
         moveKitchen=(Button)findViewById(R.id.Make);
+        reStart=(Button)findViewById(R.id.getNewCliet);
 
 
         Intent firstIntent = getIntent();
@@ -103,6 +104,18 @@ public class StoreHall extends AppCompatActivity {
             else if(score_percentage==50) clientOrder.setText("Thanks.");
             else if(score_percentage==25) clientOrder.setText("It goes something wrong...");
             else clientOrder.setText("What the hell is it?!");
+
+            reStart.setVisibility(View.VISIBLE);
+            reStart.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    clientImg.setVisibility(View.INVISIBLE);
+                    clientOrder.setVisibility(View.INVISIBLE);
+                    getIntent=0;
+                    reStart.setVisibility(View.GONE);
+
+                }
+            });
         }
 
         if(getIntent!=1) {
