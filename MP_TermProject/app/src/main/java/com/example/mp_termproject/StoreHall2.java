@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import java.util.Random;
 
-public class StoreHall extends AppCompatActivity {
+public class StoreHall2 extends AppCompatActivity {
     //손님 이미지
     ImageView clientImg;
     //손님 주문 대사
@@ -39,7 +39,7 @@ public class StoreHall extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-        setContentView(R.layout.activity_store_hall);
+        setContentView(R.layout.activity_store_hall2);
 
         clientImg=(ImageView)findViewById(R.id.client);
         clientOrder=(TextView)findViewById(R.id.Order);
@@ -54,15 +54,12 @@ public class StoreHall extends AppCompatActivity {
         if(getIntent==1) {
             if(past_order==0) clientOrder.setText(R.string.order0);
             else if(past_order==1) clientOrder.setText(R.string.order1);
-            else if(past_order==2) clientOrder.setText(R.string.order2);
-            else if(past_order==3) clientOrder.setText(R.string.order3);
             showClient(past_order, 0, getIntent, clientImg, clientOrder, moveKitchen);
 
             waterOn = firstIntent.getBooleanExtra("is_waterOn", false);
             milkOn = firstIntent.getBooleanExtra("is_milkOn", false);
             coffeeOn = firstIntent.getBooleanExtra("is_coffeeOn", false);
             iceOn = firstIntent.getBooleanExtra("is_iceOn", false);
-
 
             boolean answer_ice = true;
             boolean answer_water = true;
@@ -115,7 +112,6 @@ public class StoreHall extends AppCompatActivity {
                     Intent thirdIntent = new Intent(getApplicationContext(), StoreHall.class);
                     startActivity(thirdIntent);
                     finish();
-
                 }
             });
         }
@@ -126,11 +122,9 @@ public class StoreHall extends AppCompatActivity {
             if(getIntent==1)
                 time=0;
 
-            order = random.nextInt(4);
+            order = random.nextInt(2);
             if(order==0) clientOrder.setText(R.string.order0);
             else if (order == 1) clientOrder.setText(R.string.order1);
-            else if (order == 2) clientOrder.setText(R.string.order2);
-            else if (order == 3) clientOrder.setText(R.string.order3);
 
             showClient(order, time, getIntent, clientImg, clientOrder, moveKitchen);
         }
