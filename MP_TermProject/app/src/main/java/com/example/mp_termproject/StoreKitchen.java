@@ -15,13 +15,13 @@ public class StoreKitchen extends AppCompatActivity {
     //complete 버튼
     Button btnDone;
     //재료 토글버튼
-    ToggleButton water, milk, ice, coffee;
+    ToggleButton water, milk, ice, coffee, vanilla, lemon;
     //firstIntent는 받아오는 인텐트, secondIntent는 보내는 인텐트
     Intent firstIntent, secondIntent;
     int order;
 
     // boolean data for check order completion with result
-    boolean waterOn, milkOn, iceOn, coffeeOn;
+    boolean waterOn, milkOn, iceOn, coffeeOn, vanillaOn, lemonOn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +38,8 @@ public class StoreKitchen extends AppCompatActivity {
         milk=(ToggleButton)findViewById(R.id.milk_toggle);
         ice=(ToggleButton)findViewById(R.id.ice_toggle);
         coffee=(ToggleButton)findViewById(R.id.coffee_toggle);
+        vanilla=(ToggleButton)findViewById(R.id.vanilla_toggle);
+        lemon=(ToggleButton)findViewById(R.id.lemon_toggle);
 
         btnDone.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,6 +49,8 @@ public class StoreKitchen extends AppCompatActivity {
                 milkOn= milk.isChecked();
                 iceOn=ice.isChecked();
                 coffeeOn=coffee.isChecked();
+                vanillaOn=vanilla.isChecked();
+                lemonOn=lemon.isChecked();
 
                 /*if(coffeeOn){
                     if (iceOn){
@@ -78,6 +82,8 @@ public class StoreKitchen extends AppCompatActivity {
                 secondIntent.putExtra("is_coffeeOn", coffeeOn);
                 secondIntent.putExtra("is_iceOn", iceOn);
                 secondIntent.putExtra("is_milkOn", milkOn);
+                secondIntent.putExtra("is_vanillaOn", vanillaOn);
+                secondIntent.putExtra("is_lemonOn", lemonOn);
                 secondIntent.putExtra("intent_index", 1);
                 secondIntent.putExtra("order_index", order);
                 startActivity(secondIntent);

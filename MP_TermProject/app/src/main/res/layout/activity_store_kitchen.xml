@@ -61,5 +61,19 @@
             android:textOn="@string/coffee"
             android:textOff="@string/coffee"
             ></ToggleButton>
+        <ToggleButton
+            android:id="@+id/vanilla_toggle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textOn="@string/vanillaSyrup"
+            android:textOff="@string/vanillaSyrup"
+            ></ToggleButton>
+        <ToggleButton
+            android:id="@+id/lemon_toggle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textOn="@string/lemon"
+            android:textOff="@string/lemon"
+            ></ToggleButton>
     </LinearLayout>
 </LinearLayout>
